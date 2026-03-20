@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!--
+  ============================================
+  TOUGH TRUCKS — Pixel-Perfect Replica
+  ============================================
+-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tough Trucks — Making Trucks Tough Again</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:ital,wght@0,400;0,500;0,600;0,700;1,700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            oswald: ['Oswald', 'sans-serif'],
+            inter: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              red: '#B91C1C',
+              darkred: '#991B1B',
+              navy: '#1E3A5F',
+              dark: '#111827',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Truck card hover */
+    .truck-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .truck-card img {
+      transition: transform 0.4s ease;
+    }
+
+    .truck-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .truck-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+      pointer-events: none;
+    }
+
+    .truck-card-label {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      z-index: 2;
+      color: white;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 24px;
+      flex: 1;
+      min-height: 80px;
+    }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: #B91C1C;
+      transition: width 0.3s;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: #B91C1C;
+    }
+
+    .build-btn {
+      transition: all 0.2s;
+    }
+
+    .build-btn:hover {
+      background: #B91C1C;
+      color: white;
+      border-color: #B91C1C;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-900">
+
+  <!-- ======================== HEADER / NAVIGATION ======================== -->
+  <header class="bg-white border-b border-gray-200 relative z-50">
+    <div class="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-[72px]">
+
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-2.5 flex-shrink-0">
+          <svg viewBox="0 0 82 46" class="h-10 w-auto" xmlns="http://www.w3.org/2000/svg">
+            <rect x="0" y="0" width="38" height="9" rx="1.5" fill="#1E3A5F" />
+            <circle cx="7" cy="4.5" r="1.8" fill="white" />
+            <circle cx="14" cy="4.5" r="1.8" fill="white" />
+            <circle cx="21" cy="4.5" r="1.8" fill="white" />
+            <rect x="0" y="9" width="38" height="4" fill="#B91C1C" />
+            <rect x="13" y="13" width="12" height="33" fill="#B91C1C" />
+            <rect x="44" y="0" width="38" height="13" rx="1.5" fill="#B91C1C" />
+            <rect x="57" y="13" width="12" height="33" fill="#B91C1C" />
+          </svg>
+          <div class="flex items-start gap-0.5">
+            <span
+              class="font-['Oswald'] font-bold text-[26px] sm:text-[28px] tracking-[1px] text-gray-900 leading-none uppercase">Tough
+              Trucks</span>
+            <svg viewBox="0 0 16 16" class="w-3.5 h-3.5 mt-0.5" fill="#111827">
+              <path d="M8 0l2.47 5.01L16 5.82l-4 3.9.94 5.5L8 12.59l-4.94 2.63.94-5.5-4-3.9 5.53-.81z" />
+            </svg>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:flex items-center gap-8">
+          <a href="#" class="nav-link text-[14px] font-semibold text-gray-900 tracking-wide uppercase">Home</a>
+          <a href="#" class="nav-link text-[14px] font-semibold text-gray-900 tracking-wide uppercase">Trucks for
+            Sale</a>
+          <a href="#" class="nav-link text-[14px] font-semibold text-gray-900 tracking-wide uppercase">Accessories</a>
+          <a href="#" class="nav-link text-[14px] font-semibold text-gray-900 tracking-wide uppercase">Builds</a>
+          <a href="#" class="nav-link text-[14px] font-semibold text-gray-900 tracking-wide uppercase">GMSV</a>
+        </nav>
+
+        <!-- Right Icons -->
+        <div class="hidden lg:flex items-center gap-5">
+          <button class="text-gray-900 hover:text-brand-red transition" aria-label="Search">
+            <svg class="w-[22px] h-[22px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8" />
+              <path d="M21 21l-4.35-4.35" stroke-linecap="round" />
+            </svg>
+          </button>
+          <button class="text-gray-900 hover:text-brand-red transition" aria-label="Account">
+            <svg class="w-[22px] h-[22px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Hamburger -->
+        <button id="mobileMenuBtn" class="lg:hidden text-gray-900 p-2" aria-label="Open menu">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden fixed inset-0 bg-white z-[100] lg:hidden overflow-y-auto">
+      <div class="flex items-center justify-between px-6 h-[72px] border-b border-gray-200">
+        <span class="font-['Oswald'] font-bold text-[24px] text-gray-900 uppercase">Tough Trucks</span>
+        <button id="mobileMenuClose" class="text-gray-900 p-2" aria-label="Close menu">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+      <nav class="flex flex-col px-6 py-8 gap-6">
+        <a href="#" class="font-['Oswald'] text-xl font-semibold text-gray-900 uppercase tracking-wide">Home</a>
+        <a href="#" class="font-['Oswald'] text-xl font-semibold text-gray-900 uppercase tracking-wide">Trucks for
+          Sale</a>
+        <a href="#" class="font-['Oswald'] text-xl font-semibold text-gray-900 uppercase tracking-wide">Accessories</a>
+        <a href="#" class="font-['Oswald'] text-xl font-semibold text-gray-900 uppercase tracking-wide">Builds</a>
+        <a href="#" class="font-['Oswald'] text-xl font-semibold text-gray-900 uppercase tracking-wide">GMSV</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======================== HERO SECTION ======================== -->
+  <section class="relative min-h-[400px] lg:min-h-[480px] flex items-center overflow-hidden bg-gray-100">
+    <!-- Background truck image: rugged truck lineup -->
+    <img src="https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=1600&h=900&q=85&auto=format&fit=crop"
+      alt="American pickup trucks" class="absolute inset-0 w-full h-full object-cover object-right-top">
+    <!-- Left white gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"
+      style="background: linear-gradient(to right, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 30%, rgba(255,255,255,0.4) 55%, transparent 100%);">
+    </div>
+
+    <div class="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-14 lg:py-20 w-full">
+      <div class="max-w-[550px]">
+        <h1
+          class="font-['Oswald'] font-bold text-[44px] sm:text-[54px] lg:text-[64px] leading-[1.05] text-[#111] uppercase tracking-wide">
+          Making Trucks<br>
+          <span class="italic text-brand-red pr-1">Tough</span>
+          <span class="tracking-wide">Again</span>
+        </h1>
+        <div class="flex items-center gap-2.5 mt-5 text-[14px] font-semibold text-[#111] uppercase tracking-[1px]">
+          <span>Sales</span>
+          <span class="w-[4px] h-[4px] bg-[#111] rounded-full"></span>
+          <span>Parts</span>
+          <span class="w-[4px] h-[4px] bg-[#111] rounded-full"></span>
+          <span>Accessories</span>
+          <span class="w-[4px] h-[4px] bg-[#111] rounded-full"></span>
+          <span>Custom Builds</span>
+        </div>
+        <div class="flex flex-wrap gap-4 mt-8">
+          <a href="#"
+            class="inline-flex items-center justify-center bg-[#B91C1C] text-white font-['Oswald'] font-semibold text-[15px] uppercase tracking-[1px] px-8 py-3.5 hover:bg-[#991B1B] transition-colors">
+            View Trucks
+          </a>
+          <a href="#"
+            class="inline-flex items-center justify-center bg-transparent border-[3px] border-gray-300 text-gray-900 font-['Oswald'] font-semibold text-[15px] uppercase tracking-[1px] px-8 py-3.5 hover:border-[#111] transition-colors bg-white/50 backdrop-blur-sm">
+            Shop Accessories
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FEATURES BAR ======================== -->
+  <section class="border-b border-gray-200 bg-white shadow-sm z-20 relative">
+    <div class="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-gray-200">
+
+        <!-- Australia Wide Delivery -->
+        <div class="flex items-center gap-3 py-6 px-4 justify-center">
+          <svg class="w-8 h-8 text-[#B91C1C] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5"
+            viewBox="0 0 24 24">
+            <path
+              d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375c-.621 0-1.125-.504-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H18.75M3.375 14.25V6.375c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v7.875m0 0h6.75m-6.75 0v0c0 .621.504 1.125 1.125 1.125h5.625c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H14.25"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span class="font-['Oswald'] font-medium text-[14px] uppercase tracking-[0.5px] text-gray-900">Australia Wide
+            Delivery</span>
+        </div>
+
+        <!-- American Truck Experts -->
+        <div class="flex items-center gap-3 py-6 px-4 justify-center">
+          <svg class="w-8 h-8 text-[#B91C1C] flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+          </svg>
+          <span class="font-['Oswald'] font-medium text-[14px] uppercase tracking-[0.5px] text-gray-900">American Truck
+            Experts</span>
+        </div>
+
+        <!-- Custom Builds -->
+        <div class="flex items-center gap-3 py-6 px-4 justify-center">
+          <div
+            class="w-8 h-8 rounded-full border-[2px] border-[#B91C1C] flex items-center justify-center flex-shrink-0">
+            <span class="font-['Oswald'] font-bold text-[#B91C1C] text-[14px]">S</span>
+          </div>
+          <span class="font-['Oswald'] font-medium text-[14px] uppercase tracking-[0.5px] text-gray-900">Custom
+            Builds</span>
+        </div>
+
+        <!-- GMSV Reseller -->
+        <div class="flex items-center gap-3 py-6 px-4 justify-center">
+          <span class="font-['Oswald'] font-bold text-[16px] text-[#eeb211] tracking-wide">GMSV</span>
+          <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd"
+              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              clip-rule="evenodd" />
+          </svg>
+          <span class="font-['Oswald'] font-medium text-[14px] uppercase tracking-[0.5px] text-gray-900">Authorised GMSV
+            Reseller</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== BUILD YOUR TRUCK ======================== -->
+  <section class="bg-[#F8F9FA] border-b border-gray-200">
+    <div class="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
+        <div class="flex-shrink-0 min-w-[200px]">
+          <h2 class="font-['Oswald'] font-bold text-[28px] text-[#111] uppercase tracking-wide">Build Your Truck</h2>
+          <p class="text-gray-500 font-['Inter'] text-[15px] mt-1">Choose your platform and start customising.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-0 flex-1 border border-gray-200 bg-white">
+          <button
+            class="flex-1 min-w-[140px] bg-[#1a1a1a] text-white font-['Oswald'] font-semibold text-[15px] uppercase tracking-[1px] px-6 py-4 border-r border-gray-200 transition-colors">RAM
+            2500</button>
+          <button
+            class="flex-1 min-w-[140px] bg-white text-gray-900 font-['Oswald'] font-semibold text-[15px] uppercase tracking-[1px] px-6 py-4 border-r border-gray-200 hover:bg-gray-50 transition-colors">Chev
+            Silverado</button>
+          <button
+            class="flex-1 min-w-[140px] bg-white text-gray-900 font-['Oswald'] font-semibold text-[15px] uppercase tracking-[1px] px-6 py-4 hover:bg-gray-50 transition-colors">Ford
+            F250</button>
+        </div>
+        <a href="#"
+          class="inline-flex items-center justify-center gap-3 bg-[#B91C1C] text-white font-['Oswald'] font-semibold text-[16px] uppercase tracking-[1px] px-10 py-4 hover:bg-[#991B1B] transition-colors flex-shrink-0">
+          Start Build
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path d="M4 12h16m0 0l-4-4m4 4l-4 4" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== CATEGORY CARDS ======================== -->
+  <section class="bg-white">
+    <div class="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- Trucks for Sale -->
+        <div class="truck-card group cursor-pointer shadow-sm">
+          <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=420&h=300&q=80&auto=format&fit=crop"
+            alt="Trucks for Sale" class="w-full h-[240px] object-cover">
+          <div class="truck-card-label">
+            TRUCKS FOR SALE
+            <svg class="w-4 h-4 text-[#B91C1C]" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+        </div>
+        <!-- Accessories -->
+        <div class="truck-card group cursor-pointer shadow-sm">
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=420&h=300&q=80&auto=format&fit=crop"
+            alt="Accessories" class="w-full h-[240px] object-cover">
+          <div class="truck-card-label">
+            ACCESSORIES
+            <svg class="w-4 h-4 text-[#B91C1C]" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+        </div>
+        <!-- Custom Builds -->
+        <div class="truck-card group cursor-pointer shadow-sm">
+          <img src="https://images.unsplash.com/photo-1605893477799-b99e3b8b93fe?w=420&h=300&q=80&auto=format&fit=crop"
+            alt="Custom Builds" class="w-full h-[240px] object-cover">
+          <div class="truck-card-label">
+            CUSTOM BUILDS
+            <svg class="w-4 h-4 text-[#B91C1C]" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+        </div>
+        <!-- GMSV -->
+        <div class="truck-card group cursor-pointer shadow-sm">
+          <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=420&h=300&q=80&auto=format&fit=crop"
+            alt="GMSV" class="w-full h-[240px] object-cover">
+          <div class="truck-card-label">
+            GMSV
+            <svg class="w-4 h-4 text-[#B91C1C]" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== FEATURED BRANDS ======================== -->
+  <section class="bg-white border-t border-gray-200 pb-10">
+    <div class="max-w-[1360px] mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-center text-gray-400 font-['Oswald'] font-medium text-[13px] uppercase tracking-[4px] pt-10 pb-6">
+        Featured Brands</p>
+      <div class="flex flex-wrap items-center justify-between gap-6 px-4">
+        <!-- FOX -->
+        <div class="flex-1 flex justify-center min-w-[120px]">
+          <span class="font-['Oswald'] font-black italic text-[36px] text-[#111] tracking-tighter">FOX</span>
+        </div>
+        <!-- BILSTEIN -->
+        <div class="flex-1 flex justify-center min-w-[120px]">
+          <span class="font-['Oswald'] font-bold text-[26px] text-[#111] tracking-[3px]">BILSTEIN</span>
+        </div>
+        <!-- ROUGH COUNTRY -->
+        <div class="flex-1 flex justify-center min-w-[180px]">
+          <span class="font-['Oswald'] font-black italic text-[24px] text-[#111] tracking-[1px]">ROUGH COUNTRY</span>
+        </div>
+        <!-- FUEL OFF-ROAD -->
+        <div class="flex-1 flex justify-center min-w-[160px]">
+          <div class="flex items-baseline gap-1">
+            <span class="font-['Oswald'] font-black text-[32px] text-[#111]">FUEL</span>
+            <span class="font-['Inter'] font-semibold text-[10px] text-[#111] tracking-[1px] uppercase">off-road</span>
+          </div>
+        </div>
+        <!-- BAJA DESIGNS -->
+        <div class="flex-1 flex justify-center min-w-[160px]">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4" viewBox="0 0 16 16" fill="#111">
+              <rect x="3" y="3" width="10" height="10" transform="rotate(45 8 8)" />
+            </svg>
+            <span class="font-['Oswald'] font-bold text-[20px] text-[#111] tracking-[2px]">BAJA DESIGNS</span>
+          </div>
+        </div>
+        <!-- AMP RESEARCH -->
+        <div class="flex-1 flex justify-center min-w-[180px]">
+          <div class="flex items-baseline gap-1">
+            <span
+              class="font-['Oswald'] font-black text-[22px] text-[#111] underline underline-offset-4 decoration-[3px]">AMP</span>
+            <span class="font-['Inter'] font-normal text-[20px] text-[#111] tracking-[2px]">RESEARCH</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== JAVASCRIPT ======================== -->
+  <script>
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+    mobileMenuClose.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+      });
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+
+</html>
